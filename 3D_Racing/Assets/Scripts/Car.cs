@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 [RequireComponent (typeof(CarChassis))]
 public class Car : MonoBehaviour
@@ -9,7 +9,18 @@ public class Car : MonoBehaviour
 
     [SerializeField] private float m_maxBrakeTorque;
 
+    [SerializeField] private AnimationCurve m_engineTorqueCurve;
+
+    [SerializeField] private float m_maxSpeed;
+    public float MaxSpeed => m_maxSpeed; 
+
+    public float LinearVelocity => m_carChassis.LinearVelocity;
+    public float WheelSpeed => m_carChassis.GetWheelSpeed();
+
+
     // DEBUG
+    [SerializeField] private float linearVelocity;
+
     public float ThrottleControl;
 
     public float SteerControl;
@@ -27,7 +38,13 @@ public class Car : MonoBehaviour
 
     private void Update()
     {
-        m_carChassis.MotorTorque = m_maxMotorTorque * ThrottleControl;
+        linearVelocity = LinearVelocity;
+
+        float engineTorque = m_engineTorqueCurve.Evaluate(LinearVelocity / m_maxSpeed) * m_maxMotorTorque;
+
+        if (LinearVelocity >= m_maxSpeed) engineTorque = 0;
+
+        m_carChassis.MotorTorque = engineTorque * ThrottleControl;
 
         m_carChassis.SteerAngle = m_maxSteerAngle * SteerControl;
 
