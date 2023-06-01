@@ -82,6 +82,11 @@ public class CarInputControl : MonoBehaviour
         {
             m_car.SShiftToFirstGear();
         }
+
+        if (m_car.LinearVelocity < 0.1f && m_car.LinearVelocity > -0.1f && _verticalAxis == 0)
+        {
+            m_car.ShiftToNetral();
+        }
     }
 
     private void UpdateAxis()

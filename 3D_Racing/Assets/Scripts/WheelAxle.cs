@@ -49,6 +49,13 @@ public class WheelAxle
         SyncMeshTransform();
     }
 
+    public void ConfigureVehicleSubsteps(float speedThreshold, int speedBelowThreshold, int speedAboveThreshold)
+    {
+        m_leftWheelCollider.ConfigureVehicleSubsteps(speedThreshold, speedBelowThreshold, speedAboveThreshold);
+
+        m_rightWheelCollider.ConfigureVehicleSubsteps(speedThreshold, speedBelowThreshold, speedAboveThreshold);
+    }
+
     private void UpdateWheelHits()
     {
          m_leftWheelCollider.GetGroundHit(out _leftWheelHit);

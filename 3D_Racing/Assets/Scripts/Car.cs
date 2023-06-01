@@ -1,8 +1,11 @@
 ﻿using UnityEngine;
+using UnityEngine.Events;
 
 [RequireComponent(typeof(CarChassis))]
 public class Car : MonoBehaviour
 {
+    public event UnityAction<string> OnGearChaged;
+
     [SerializeField] private float m_maxSteerAngle;
 
     [SerializeField] private float m_maxBrakeTorque;
@@ -41,6 +44,9 @@ public class Car : MonoBehaviour
     public float LinearVelocity => m_carChassis.LinearVelocity;
     public float WheelSpeed => m_carChassis.GetWheelSpeed();
 
+    public float EngineRPM => m_engineRPM;
+    public float EngineMaxRPM => m_engineMaxRPM;
+
 
     // DEBUG
     [SerializeField] private float linearVelocity;
@@ -58,6 +64,8 @@ public class Car : MonoBehaviour
     private void Start()
     {
         m_carChassis = GetComponent<CarChassis>();
+
+        OnGearChaged?.Invoke(GetSelectedGearName());
     }
 
     private void Update()
@@ -66,7 +74,7 @@ public class Car : MonoBehaviour
 
         UpdateEngineTorque();
 
-        AutoGearShift();
+        //AutoGearShift();
 
         if (LinearVelocity >= m_maxSpeed) m_engineTorque = 0;
 
@@ -94,6 +102,15 @@ public class Car : MonoBehaviour
         }
     } 
 
+    public string GetSelectedGearName()
+    {
+        if (m_selectedGear == m_rearGear) return "R";
+
+        if (m_selectedGear == 0) return "N";
+       
+        return (m_selectedGearIndex + 1).ToString();   
+    }
+
     public void UpGear()
     {
         ShiftGear(m_selectedGearIndex + 1);
@@ -107,6 +124,8 @@ public class Car : MonoBehaviour
     public void ShiftToRevertGear()
     {
         m_selectedGear = m_rearGear;
+
+        OnGearChaged?.Invoke(GetSelectedGearName());
     }
 
     public void SShiftToFirstGear()
@@ -117,6 +136,8 @@ public class Car : MonoBehaviour
     public void ShiftToNetral()
     {
         m_selectedGear = 0;
+
+        OnGearChaged?.Invoke(GetSelectedGearName());
     }
 
     private void ShiftGear(int gearIndex)
@@ -126,6 +147,8 @@ public class Car : MonoBehaviour
         m_selectedGear = m_gears[gearIndex];
 
         m_selectedGearIndex = gearIndex;
+
+        OnGearChaged?.Invoke(GetSelectedGearName());
     }
 
     private void UpdateEngineTorque()
