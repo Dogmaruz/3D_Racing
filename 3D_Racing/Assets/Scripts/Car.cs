@@ -37,15 +37,22 @@ public class Car : MonoBehaviour
     [SerializeField] private float m_downShiftEngineRPM;
 
     [SerializeField] private int m_selectedGearIndex;
+    public int SelectedGearIndex => m_selectedGearIndex;
 
     [SerializeField] private float m_maxSpeed;
 
+    [SerializeField] private bool m_AutoMode;
+    public bool AutoMode => m_AutoMode;
+
     public float MaxSpeed => m_maxSpeed;
     public float LinearVelocity => m_carChassis.LinearVelocity;
+    public float NormalizedLinearVelocity => m_carChassis.LinearVelocity / m_maxSpeed;
     public float WheelSpeed => m_carChassis.GetWheelSpeed();
 
     public float EngineRPM => m_engineRPM;
     public float EngineMaxRPM => m_engineMaxRPM;
+
+
 
 
     // DEBUG
@@ -74,7 +81,8 @@ public class Car : MonoBehaviour
 
         UpdateEngineTorque();
 
-        //AutoGearShift();
+        if (m_AutoMode)
+            AutoGearShift();
 
         if (LinearVelocity >= m_maxSpeed) m_engineTorque = 0;
 
@@ -87,9 +95,10 @@ public class Car : MonoBehaviour
 
     //Gearbox
 
-    private void AutoGearShift()
+    public void AutoGearShift()
     {
         if (m_selectedGear < 0) return;
+        if (m_selectedGear == 0) return;
 
         if (m_engineRPM >= m_upShiftEngineRPM)
         {
@@ -100,15 +109,15 @@ public class Car : MonoBehaviour
         {
             DownGear();
         }
-    } 
+    }
 
     public string GetSelectedGearName()
     {
         if (m_selectedGear == m_rearGear) return "R";
 
         if (m_selectedGear == 0) return "N";
-       
-        return (m_selectedGearIndex + 1).ToString();   
+
+        return (m_selectedGearIndex + 1).ToString();
     }
 
     public void UpGear()
@@ -128,7 +137,7 @@ public class Car : MonoBehaviour
         OnGearChaged?.Invoke(GetSelectedGearName());
     }
 
-    public void SShiftToFirstGear()
+    public void ShiftToFirstGear()
     {
         ShiftGear(0);
     }
