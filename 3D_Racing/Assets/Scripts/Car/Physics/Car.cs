@@ -65,6 +65,7 @@ public class Car : MonoBehaviour
     public float BrakeControl;
 
     private CarChassis m_carChassis;
+    public Rigidbody Rigidbody => m_carChassis == null ? GetComponent<CarChassis>().Rigidbody : m_carChassis.Rigidbody;
 
     //public float HandBrakeControl;
 

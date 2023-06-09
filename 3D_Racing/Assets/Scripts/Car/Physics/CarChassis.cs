@@ -1,5 +1,4 @@
 ﻿using UnityEngine;
-using UnityEngine.Rendering;
 
 [RequireComponent (typeof(Rigidbody))]
 public class CarChassis : MonoBehaviour
@@ -35,6 +34,7 @@ public class CarChassis : MonoBehaviour
     public float SteerAngle; //Угол поворота колес.
 
     private Rigidbody _rigidbody;
+    public Rigidbody Rigidbody => _rigidbody == null ? GetComponent<Rigidbody>() : _rigidbody;
     public float LinearVelocity => _rigidbody.velocity.magnitude * 3.6f;
 
 

@@ -1,11 +1,7 @@
 using UnityEngine;
 
-public class CameraFollow : MonoBehaviour
+public class CameraFollow : CameraComponent
 {
-    [SerializeField] private Transform m_target;
-
-    [SerializeField] private Rigidbody m_rigidbody;
-
     [Header("Offset")]
     [SerializeField] private float m_viewHeight;
 
@@ -20,11 +16,15 @@ public class CameraFollow : MonoBehaviour
 
     [SerializeField] private float m_speedThreshold;
 
+    private Transform _target;
+
+    private Rigidbody _rigidbody;
+
     private void FixedUpdate()
     {
-        Vector3 velocity = m_rigidbody.velocity;
+        Vector3 velocity = _rigidbody.velocity;
 
-        Vector3 targetRotation = m_target.eulerAngles;
+        Vector3 targetRotation = _target.eulerAngles;
 
         if (velocity.magnitude > m_speedThreshold)
         {
@@ -33,14 +33,23 @@ public class CameraFollow : MonoBehaviour
 
         float currentAngle = Mathf.LerpAngle(transform.eulerAngles.y, targetRotation.y, m_rotationDamping * Time.fixedDeltaTime);
 
-        float currentHeight = Mathf.Lerp(transform.position.y, m_target.position.y + m_height, m_heightDamping * Time.fixedDeltaTime);
+        float currentHeight = Mathf.Lerp(transform.position.y, _target.position.y + m_height, m_heightDamping * Time.fixedDeltaTime);
 
         Vector3 positionOffset = Quaternion.Euler(0, currentAngle, 0) * Vector3.forward * m_distance;
 
-        transform.position = m_target.position - positionOffset;
+        transform.position = _target.position - positionOffset;
 
         transform.position = new Vector3(transform.position.x, currentHeight, transform.position.z);
 
-        transform.LookAt(m_target.position + new Vector3(0, m_viewHeight, 0));
+        transform.LookAt(_target.position + new Vector3(0, m_viewHeight, 0));
+    }
+
+    public override void SetProperties(Car car, Camera camera)
+    {
+        base.SetProperties(car, camera);
+
+        _target = car.transform;
+
+        _rigidbody = car.Rigidbody;
     }
 }
