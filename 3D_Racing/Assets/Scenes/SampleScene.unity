@@ -850,7 +850,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 62a2c3305ea18094a8440bb045cfeaab, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_car: {fileID: 1529008825}
   m_text: {fileID: 372383469}
 --- !u!1001 &56825838
 PrefabInstance:
@@ -1790,7 +1789,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 100262226}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.79, y: 5.02, z: 14.62}
+  m_LocalPosition: {x: -24.4, y: 12.9, z: 107.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1841,8 +1840,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4da1515aca2d45c49b9d83e89a4484c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_carInputControl: {fileID: 870703911}
-  m_raceStateTracker: {fileID: 1668484188}
 --- !u!1 &119835098
 GameObject:
   m_ObjectHideFlags: 0
@@ -2840,7 +2837,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccfc5c34bc8c4984393b73e667b775e0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_car: {fileID: 1529008825}
   m_pitchModifier: 0.5
   m_volumeModifier: 0.25
   m_rpmModifier: 3
@@ -3731,6 +3727,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 2024911412}
   - {fileID: 1668484187}
   - {fileID: 286709410}
   - {fileID: 118327637}
@@ -4133,7 +4130,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bb14c3b69be37fd42b677ff7bdab9333, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_raceStateTracker: {fileID: 1668484188}
 --- !u!43 &318247890
 Mesh:
   m_ObjectHideFlags: 0
@@ -5621,7 +5617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 480e5aadc4cf15742b05dfad183a6930, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_car: {fileID: 1529008825}
   m_text: {fileID: 1765750477}
 --- !u!1 &446457669
 GameObject:
@@ -6740,7 +6735,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 97763e3f41f5f5a409aa867ebcae8df2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_car: {fileID: 1529008825}
   m_clip: {fileID: 8300000, guid: a8c48cd820e56844cbb93c661868bb2d, type: 3}
 --- !u!82 &540328690
 AudioSource:
@@ -9815,7 +9809,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 826246950}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -4.52, y: 1.045, z: 3.73}
+  m_LocalPosition: {x: -53.5, y: 12.2, z: 42.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -17233,12 +17227,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3f310f89013628b48818a3cc5c3d2526, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_car: {fileID: 1529008825}
   m_camera: {fileID: 963194227}
   m_follow: {fileID: 963194229}
   m_shaker: {fileID: 963194231}
   m_fovCorrector: {fileID: 963194230}
-  m_raceStateTracker: {fileID: 1668484188}
   m_pathFollower: {fileID: 963194236}
 --- !u!114 &963194236
 MonoBehaviour:
@@ -17254,7 +17246,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_path: {fileID: 648601073}
   m_lookTarget: {fileID: 384396849}
-  m_movementSpeed: 5
+  m_movementSpeed: 10
 --- !u!43 &966833715
 Mesh:
   m_ObjectHideFlags: 0
@@ -19982,7 +19974,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1160176615}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -3.2, y: 1.78, z: -7.76}
+  m_LocalPosition: {x: -43.3, y: 13.8, z: -24}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -20502,7 +20494,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 99be0b866f45f11418d5a581d296372c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_car: {fileID: 1529008825}
   m_image: {fileID: 1489141128}
   m_colors:
   - MaxRPM: 5500
@@ -21137,9 +21128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c33e4e2dfe4a2147878b89014f7a32f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_raceStateTracker: {fileID: 1668484188}
   m_text: {fileID: 1228178092}
-  m_CountDownTimer: {fileID: 1650607434}
 --- !u!1 &1240530497
 GameObject:
   m_ObjectHideFlags: 0
@@ -21164,7 +21153,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1240530497}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.19, y: 5.02, z: 9.29}
+  m_LocalPosition: {x: 27, y: 14.1, z: 98.9}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -26822,7 +26811,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e6278866548d9154fb95b0464094e3e9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_trackPointCircuit: {fileID: 1063148940}
   m_countDownTimer: {fileID: 1650607434}
   m_lapsToCompleted: 2
 --- !u!1 &1671604043
@@ -41697,7 +41685,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 75a2d871de7b21246b7f5d87edc63f83, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_car: {fileID: 1529008825}
   m_baseVolume: 0
   m_volumeModifier: 50
 --- !u!1001 &1938238133
@@ -42488,7 +42475,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7e2befac7b871bd4a9c7be8719d491f6, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_car: {fileID: 1529008825}
   m_basePitch: 0.2
   m_baseVolume: 0
   m_pitchModifier: 1.5
@@ -43729,6 +43715,55 @@ Mesh:
     offset: 0
     size: 0
     path: 
+--- !u!1 &2024911411
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2024911412}
+  - component: {fileID: 2024911413}
+  m_Layer: 0
+  m_Name: SceneDependencies
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2024911412
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024911411}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 261506635}
+  m_RootOrder: -1
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2024911413
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2024911411}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be970b5afa54e0f4587918e5400b2b8f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_raceSatteTracker: {fileID: 1668484188}
+  m_carInputControl: {fileID: 870703911}
+  m_trackPointCircuit: {fileID: 1063148940}
+  m_car: {fileID: 1529008825}
+  m_cameraController: {fileID: 963194235}
 --- !u!4 &2038966210 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3745098970199665181, guid: a44c8246cf3280c4b83f33372de45a91, type: 3}
@@ -45864,15 +45899,15 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2170273936462484203, guid: 2179e4ff6ad08254390a9091a5892db6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 8.32
+      value: 47.6
       objectReference: {fileID: 0}
     - target: {fileID: 2170273936462484203, guid: 2179e4ff6ad08254390a9091a5892db6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 12.99
+      value: 13.6
       objectReference: {fileID: 0}
     - target: {fileID: 2170273936462484203, guid: 2179e4ff6ad08254390a9091a5892db6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -8.89
+      value: 36.1
       objectReference: {fileID: 0}
     - target: {fileID: 3461870548933378701, guid: 2179e4ff6ad08254390a9091a5892db6, type: 3}
       propertyPath: m_RootOrder
@@ -45920,15 +45955,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6866723047444381653, guid: 2179e4ff6ad08254390a9091a5892db6, type: 3}
       propertyPath: m_LocalPosition.x
-      value: -13.05
+      value: 36.8
       objectReference: {fileID: 0}
     - target: {fileID: 6866723047444381653, guid: 2179e4ff6ad08254390a9091a5892db6, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 9.14
+      value: 12.4
       objectReference: {fileID: 0}
     - target: {fileID: 6866723047444381653, guid: 2179e4ff6ad08254390a9091a5892db6, type: 3}
       propertyPath: m_LocalPosition.z
-      value: -10.66
+      value: -18.3
       objectReference: {fileID: 0}
     - target: {fileID: 8878901519555440465, guid: 2179e4ff6ad08254390a9091a5892db6, type: 3}
       propertyPath: m_Name

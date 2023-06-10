@@ -2,10 +2,8 @@ using System;
 using UnityEngine;
 
 [RequireComponent (typeof(AudioSource))]
-public class EngineSound : MonoBehaviour
+public class EngineSound : MonoBehaviour, IDependency<Car>
 {
-    [SerializeField] private Car m_car;
-
     [SerializeField] private float m_pitchModifier;
 
     [SerializeField] private float m_volumeModifier;
@@ -18,7 +16,14 @@ public class EngineSound : MonoBehaviour
 
     [SerializeField] private AudioClip[] m_clips = new AudioClip[7];
 
+    private Car m_car;
+
     private AudioSource m_engineAudioSourse;
+
+    public void Construct(Car obj)
+    {
+        m_car = obj;
+    }
 
     private void Start()
     {

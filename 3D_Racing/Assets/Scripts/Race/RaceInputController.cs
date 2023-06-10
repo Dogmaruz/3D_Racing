@@ -1,11 +1,21 @@
 using System;
 using UnityEngine;
 
-public class RaceInputController : MonoBehaviour
+public class RaceInputController : MonoBehaviour, IDependency<CarInputControl>, IDependency<RaceStateTracker>
 {
-    [SerializeField] private CarInputControl m_carInputControl;
+    private CarInputControl m_carInputControl;
 
-    [SerializeField] private RaceStateTracker m_raceStateTracker;
+    private RaceStateTracker m_raceStateTracker;
+
+    public void Construct(CarInputControl obj)
+    {
+        m_carInputControl = obj;
+    }
+
+    public void Construct(RaceStateTracker obj)
+    {
+        m_raceStateTracker = obj;
+    }
 
     private void Start()
     {

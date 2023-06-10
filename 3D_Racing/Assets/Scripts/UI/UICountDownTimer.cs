@@ -2,13 +2,16 @@ using System;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UICountDownTimer : MonoBehaviour
+public class UICountDownTimer : MonoBehaviour, IDependency<RaceStateTracker>
 {
-    [SerializeField] private RaceStateTracker m_raceStateTracker;
+    private RaceStateTracker m_raceStateTracker;
 
     [SerializeField] private Text m_text;
 
-    [SerializeField] private Timer m_CountDownTimer;
+    public void Construct(RaceStateTracker obj)
+    {
+        m_raceStateTracker = obj;
+    }
 
     private void Start()
     {
@@ -43,7 +46,7 @@ public class UICountDownTimer : MonoBehaviour
 
     private void Update()
     {
-        m_text.text = m_CountDownTimer.Value.ToString("F0");
+        m_text.text = m_raceStateTracker.CountDownTimer.Value.ToString("F0");
 
         if (m_text.text == "0")
         {

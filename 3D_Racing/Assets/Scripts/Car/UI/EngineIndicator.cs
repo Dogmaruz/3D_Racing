@@ -10,13 +10,18 @@ class EngineIndicatorColor
     public Color color;
 }
 
-public class EngineIndicator : MonoBehaviour
+public class EngineIndicator : MonoBehaviour, IDependency<Car>
 {
-    [SerializeField] private Car m_car;
-
     [SerializeField] private Image m_image;
 
     [SerializeField] private EngineIndicatorColor[] m_colors;
+
+    private Car m_car;
+
+    public void Construct(Car obj)
+    {
+        m_car = obj;
+    }
 
     void Update()
     {

@@ -1,11 +1,16 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GearboxIndicator : MonoBehaviour
+public class GearboxIndicator : MonoBehaviour, IDependency<Car>
 {
-    [SerializeField] private Car m_car;
-
     [SerializeField] private Text m_text;
+
+    private Car m_car;
+
+    public void Construct(Car obj)
+    {
+        m_car = obj;
+    }
     private void Start()
     {
         m_car.OnGearChaged += GearChanged;

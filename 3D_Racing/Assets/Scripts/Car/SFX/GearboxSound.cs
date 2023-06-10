@@ -1,16 +1,20 @@
 using System;
 using UnityEngine;
 
-public class GearboxSound : MonoBehaviour
+public class GearboxSound : MonoBehaviour, IDependency<Car>
 {
-    [SerializeField] private Car m_car;
-
     [SerializeField] private AudioClip m_clip;
 
     private AudioSource _engineAudioSourse;
 
     private string _currentGearName;
 
+    private Car m_car;
+
+    public void Construct(Car obj)
+    {
+        m_car = obj;
+    }
 
     private void Start()
     {

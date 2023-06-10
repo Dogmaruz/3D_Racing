@@ -3,6 +3,7 @@ using UnityEngine;
 public class SpotLightController : MonoBehaviour
 {
     [SerializeField] private GameObject[] m_frontLights;
+
     [SerializeField] private GameObject[] m_rearLights;
 
     void Update()

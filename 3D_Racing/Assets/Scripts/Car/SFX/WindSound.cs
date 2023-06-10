@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public class WindSound : MonoBehaviour
+public class WindSound : MonoBehaviour, IDependency<Car>
 {
-    [SerializeField] private Car m_car;
-
     [SerializeField] private float m_basePitch = 1.0f;
 
     [SerializeField] private float m_baseVolume = 0.4f;
@@ -14,7 +12,14 @@ public class WindSound : MonoBehaviour
 
     [SerializeField] private float m_rpmModifier;
 
+    private Car m_car;
+
     private AudioSource m_audioSource;
+
+    public void Construct(Car obj)
+    {
+        m_car = obj;
+    }
 
     private void Start()
     {

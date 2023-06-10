@@ -11,7 +11,7 @@ public enum RaceState
     Passed
 }
 
-public class RaceStateTracker : MonoBehaviour
+public class RaceStateTracker : MonoBehaviour, IDependency<TrackPointCircuit>
 {
     public event UnityAction PreparationStarted;
 
@@ -23,14 +23,21 @@ public class RaceStateTracker : MonoBehaviour
 
     public event UnityAction<int> LapCompleted;
 
-    [SerializeField] private TrackPointCircuit m_trackPointCircuit;
-
     [SerializeField] private Timer m_countDownTimer;
+    public Timer CountDownTimer => m_countDownTimer;
 
     [SerializeField] private int m_lapsToCompleted;
 
+    private TrackPointCircuit _trackPointCircuit;
+
     private RaceState _state;
     public RaceState State => _state;
+
+
+    public void Construct(TrackPointCircuit obj)
+    {
+        _trackPointCircuit = obj;
+    }
 
     private void StartState(RaceState state)
     {
@@ -45,18 +52,18 @@ public class RaceStateTracker : MonoBehaviour
 
         m_countDownTimer.Finished += OnCountDownTimerFinished;
 
-        m_trackPointCircuit.TrackPointTriggered += OnTrackPointTriggered;
+        _trackPointCircuit.TrackPointTriggered += OnTrackPointTriggered;
 
-        m_trackPointCircuit.LapCompleted += OnLapCompleted;
+        _trackPointCircuit.LapCompleted += OnLapCompleted;
     }
 
     private void OnDestroy()
     {
         m_countDownTimer.Finished -= OnCountDownTimerFinished;
 
-        m_trackPointCircuit.TrackPointTriggered -= OnTrackPointTriggered;
+        _trackPointCircuit.TrackPointTriggered -= OnTrackPointTriggered;
 
-        m_trackPointCircuit.LapCompleted -= OnLapCompleted;
+        _trackPointCircuit.LapCompleted -= OnLapCompleted;
     }
 
     private void OnTrackPointTriggered(TrackPoint trackPoint)
@@ -71,12 +78,12 @@ public class RaceStateTracker : MonoBehaviour
 
     private void OnLapCompleted(int lapAmount)
     {
-        if (m_trackPointCircuit.Type == TrackType.Sprint) 
+        if (_trackPointCircuit.Type == TrackType.Sprint)
         {
             CompletedRace();
         }
 
-        if (m_trackPointCircuit.Type == TrackType.Circular)
+        if (_trackPointCircuit.Type == TrackType.Circular)
         {
             if (lapAmount == m_lapsToCompleted)
             {
@@ -92,7 +99,7 @@ public class RaceStateTracker : MonoBehaviour
     public void LaunchPreparationStart()
     {
         if (_state != RaceState.Preparation) return;
-       
+
         StartState(RaceState.CountDown);
 
         m_countDownTimer.enabled = true;

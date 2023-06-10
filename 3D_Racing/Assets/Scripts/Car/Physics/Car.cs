@@ -52,9 +52,6 @@ public class Car : MonoBehaviour
     public float EngineRPM => m_engineRPM;
     public float EngineMaxRPM => m_engineMaxRPM;
 
-
-
-
     // DEBUG
     [SerializeField] private float linearVelocity;
 

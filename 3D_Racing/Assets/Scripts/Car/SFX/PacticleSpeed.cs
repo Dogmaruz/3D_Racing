@@ -1,15 +1,20 @@
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
-public class PacticleSpeed : MonoBehaviour
+public class PacticleSpeed : MonoBehaviour, IDependency<Car>
 {
-    [SerializeField] private Car m_car;
-
     [SerializeField][Range(0.0f, 1.0f)] private float m_baseVolume;
 
     [SerializeField][Range(0.0f, 50.0f)] private float m_volumeModifier;
 
+    private Car m_car;
+
     private ParticleSystem m_particleSystem;
+
+    public void Construct(Car obj)
+    {
+        m_car = obj;
+    }
 
     private void Start()
     {

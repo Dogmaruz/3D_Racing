@@ -1,9 +1,7 @@
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController : MonoBehaviour, IDependency<Car>, IDependency<RaceStateTracker>
 {
-    [SerializeField] private Car m_car;
-
     [SerializeField] private Camera m_camera;
 
     [SerializeField] private CameraFollow m_follow;
@@ -12,9 +10,21 @@ public class CameraController : MonoBehaviour
 
     [SerializeField] private CameraFovCorrector m_fovCorrector;
 
-    [SerializeField] private RaceStateTracker m_raceStateTracker;
-
     [SerializeField] private CameraPathFollower m_pathFollower;
+
+    private RaceStateTracker m_raceStateTracker;
+
+    private Car m_car;
+
+    public void Construct(Car obj)
+    {
+        m_car = obj;
+    }
+
+    public void Construct(RaceStateTracker obj)
+    {
+        m_raceStateTracker = obj;
+    }
 
     private void Awake()
     {
