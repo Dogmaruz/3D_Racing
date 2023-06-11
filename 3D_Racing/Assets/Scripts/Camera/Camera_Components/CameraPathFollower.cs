@@ -11,7 +11,6 @@ public class CameraPathFollower : CameraComponent
     private Vector3[] _points;
 
     private int _pointIndex;
-
     private void Start()
     {
         _points = new Vector3[m_path.childCount];

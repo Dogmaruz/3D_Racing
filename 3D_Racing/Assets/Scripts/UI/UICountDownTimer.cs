@@ -1,4 +1,4 @@
-using System;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,6 +7,8 @@ public class UICountDownTimer : MonoBehaviour, IDependency<RaceStateTracker>
     private RaceStateTracker _raceStateTracker;
 
     [SerializeField] private Text m_text;
+
+    private DG.Tweening.Sequence _sequence;
 
     public void Construct(RaceStateTracker obj)
     {
@@ -33,6 +35,8 @@ public class UICountDownTimer : MonoBehaviour, IDependency<RaceStateTracker>
     {
         m_text.enabled = false;
 
+        _sequence.Kill();
+
         enabled = false;
     }
 
@@ -42,6 +46,13 @@ public class UICountDownTimer : MonoBehaviour, IDependency<RaceStateTracker>
         m_text.enabled = true;
 
         enabled = true;
+
+        _sequence = DOTween.Sequence()
+            .Append(m_text.transform.DOScale(new Vector3(4f, 4f, 4f), 0.45f))
+            .Append(m_text.transform.DOScale(new Vector3(1f, 1f, 1f), 0.45f))
+            .SetEase(Ease.InOutQuad)
+            .SetLink(gameObject)
+            .SetLoops(-1);
     }
 
     private void Update()
