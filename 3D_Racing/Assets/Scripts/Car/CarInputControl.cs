@@ -1,9 +1,9 @@
 ﻿using System;
 using UnityEngine;
 
-public class CarInputControl : MonoBehaviour
+public class CarInputControl : MonoBehaviour, IDependency<Car>
 {
-    [SerializeField] private Car m_car;
+    private Car _car;
 
     [SerializeField] private AnimationCurve m_brakeCurve;
 
@@ -25,6 +25,11 @@ public class CarInputControl : MonoBehaviour
 
     private bool _isReducing;
 
+    public void Construct(Car obj)
+    {
+        _car = obj;
+    }
+
     private void Start()
     {
         _previousLinearVelocity = new float[5];
@@ -32,7 +37,7 @@ public class CarInputControl : MonoBehaviour
 
     private void Update()
     {
-        _wheelSpeed = m_car.WheelSpeed;
+        _wheelSpeed = _car.WheelSpeed;
 
         UpdateAxis();
 
@@ -54,16 +59,16 @@ public class CarInputControl : MonoBehaviour
         {
             if (_verticalAxis < 0) return;
 
-            _previousLinearVelocity[m_car.SelectedGearIndex] = m_car.LinearVelocity;
+            _previousLinearVelocity[_car.SelectedGearIndex] = _car.LinearVelocity;
 
-            m_car.UpGear();
+            _car.UpGear();
         }
         //DEBUG
         if (Input.GetKeyDown(KeyCode.Q))
         {
             if (_verticalAxis < 0) return;
 
-            m_car.DownGear();
+            _car.DownGear();
 
             _isReducing = true;
         }
@@ -71,11 +76,11 @@ public class CarInputControl : MonoBehaviour
 
     private void ReducingSpeedToPreviousValue()
     {
-        if (m_car.LinearVelocity > _previousLinearVelocity[m_car.SelectedGearIndex])
+        if (_car.LinearVelocity > _previousLinearVelocity[_car.SelectedGearIndex])
         {
-            m_car.BrakeControl = m_brakeCurve.Evaluate(_wheelSpeed / m_car.MaxSpeed);
+            _car.BrakeControl = m_brakeCurve.Evaluate(_wheelSpeed / _car.MaxSpeed);
 
-            m_car.ThrottleControl = 0;
+            _car.ThrottleControl = 0;
         }
         else
         {
@@ -87,17 +92,17 @@ public class CarInputControl : MonoBehaviour
     {
         if (_handBrakeAxis > 0)
         {
-            m_car.ThrottleControl = 0;
+            _car.ThrottleControl = 0;
 
-            m_car.BrakeControl = m_handBrakeCurve.Evaluate(_wheelSpeed / m_car.MaxSpeed);
+            _car.BrakeControl = m_handBrakeCurve.Evaluate(_wheelSpeed / _car.MaxSpeed);
 
-            m_car.AutoGearShift();
+            _car.AutoGearShift();
         }
     }
 
     private void UpdateSteer()
     {
-        m_car.SteerControl = m_steerCurve.Evaluate(_wheelSpeed / m_car.MaxSpeed) * _horizontalAxis;
+        _car.SteerControl = m_steerCurve.Evaluate(_wheelSpeed / _car.MaxSpeed) * _horizontalAxis;
     }
 
     private void UpdateThrottleAndBrake()
@@ -106,34 +111,34 @@ public class CarInputControl : MonoBehaviour
 
         if (Mathf.Sign(_verticalAxis) == Mathf.Sign(_wheelSpeed) || Mathf.Abs(_wheelSpeed) < 0.5f)
         {
-            m_car.ThrottleControl = Mathf.Abs(_verticalAxis);
+            _car.ThrottleControl = Mathf.Abs(_verticalAxis);
 
-            m_car.BrakeControl = 0;
+            _car.BrakeControl = 0;
         }
         else
         {
-            m_car.ThrottleControl = 0;
+            _car.ThrottleControl = 0;
 
-            m_car.BrakeControl = m_brakeCurve.Evaluate(_wheelSpeed / m_car.MaxSpeed);
+            _car.BrakeControl = m_brakeCurve.Evaluate(_wheelSpeed / _car.MaxSpeed);
 
-            m_car.AutoGearShift();
+            _car.AutoGearShift();
         }
 
         //Gear
 
-        if (_verticalAxis < 0 && _wheelSpeed > -0.5f && _wheelSpeed < 0.5f && m_car.LinearVelocity < 1f)
+        if (_verticalAxis < 0 && _wheelSpeed > -0.5f && _wheelSpeed < 0.5f && _car.LinearVelocity < 1f)
         {
-            m_car.ShiftToRevertGear();
+            _car.ShiftToRevertGear();
         }
 
         if (_verticalAxis > 0 && _wheelSpeed > -0.5f && _wheelSpeed < 0.5f)
         {
-            m_car.ShiftToFirstGear();
+            _car.ShiftToFirstGear();
         }
 
-        if (m_car.LinearVelocity < 0.1f && m_car.LinearVelocity > -0.1f && _verticalAxis == 0)
+        if (_car.LinearVelocity < 0.1f && _car.LinearVelocity > -0.1f && _verticalAxis == 0)
         {
-            m_car.ShiftToNetral();
+            _car.ShiftToNetral();
         }
     }
 
@@ -150,11 +155,18 @@ public class CarInputControl : MonoBehaviour
     {
         if (_verticalAxis == 0)
         {
-            m_car.BrakeControl = m_brakeCurve.Evaluate(_wheelSpeed / m_car.MaxSpeed) * m_autoBrakeStrength;
+            _car.BrakeControl = m_brakeCurve.Evaluate(_wheelSpeed / _car.MaxSpeed) * m_autoBrakeStrength;
         }
     }
 
     public void Stop()
+    {
+        Reset();
+
+        _car.BrakeControl = 1;
+    }
+
+    public void Reset()
     {
         _verticalAxis = 0;
 
@@ -162,10 +174,10 @@ public class CarInputControl : MonoBehaviour
 
         _handBrakeAxis = 0;
 
-        m_car.ThrottleControl = 0;
+        _car.ThrottleControl = 0;
 
-        m_car.SteerControl = 0;
+        _car.SteerControl = 0;
 
-        m_car.BrakeControl = 1;
+        _car.BrakeControl = 0;
     }
 }

@@ -7,13 +7,13 @@ public class PacticleSpeed : MonoBehaviour, IDependency<Car>
 
     [SerializeField][Range(0.0f, 50.0f)] private float m_volumeModifier;
 
-    private Car m_car;
+    private Car _car;
 
     private ParticleSystem m_particleSystem;
 
     public void Construct(Car obj)
     {
-        m_car = obj;
+        _car = obj;
     }
 
     private void Start()
@@ -24,9 +24,9 @@ public class PacticleSpeed : MonoBehaviour, IDependency<Car>
     [System.Obsolete]
     private void Update()
     {
-        m_particleSystem.startSpeed = m_baseVolume + m_volumeModifier * m_car.NormalizedLinearVelocity;
+        m_particleSystem.startSpeed = m_baseVolume + m_volumeModifier * _car.NormalizedLinearVelocity;
 
-        if (m_car.LinearVelocity < 1)
+        if (_car.LinearVelocity < 1)
         {
             m_particleSystem.startSpeed = 0;
         }

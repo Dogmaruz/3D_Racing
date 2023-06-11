@@ -5,15 +5,15 @@ public class GearboxIndicator : MonoBehaviour, IDependency<Car>
 {
     [SerializeField] private Text m_text;
 
-    private Car m_car;
+    private Car _car;
 
     public void Construct(Car obj)
     {
-        m_car = obj;
+        _car = obj;
     }
     private void Start()
     {
-        m_car.OnGearChaged += GearChanged;
+        _car.OnGearChaged += GearChanged;
     }
     private void GearChanged(string gearName)
     {
@@ -22,6 +22,6 @@ public class GearboxIndicator : MonoBehaviour, IDependency<Car>
 
     private void OnDestroy()
     {
-        m_car.OnGearChaged -= GearChanged;
+        _car.OnGearChaged -= GearChanged;
     }
 }

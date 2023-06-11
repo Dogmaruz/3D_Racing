@@ -12,34 +12,34 @@ public class CameraController : MonoBehaviour, IDependency<Car>, IDependency<Rac
 
     [SerializeField] private CameraPathFollower m_pathFollower;
 
-    private RaceStateTracker m_raceStateTracker;
+    private RaceStateTracker _raceStateTracker;
 
-    private Car m_car;
+    private Car _car;
 
     public void Construct(Car obj)
     {
-        m_car = obj;
+        _car = obj;
     }
 
     public void Construct(RaceStateTracker obj)
     {
-        m_raceStateTracker = obj;
+        _raceStateTracker = obj;
     }
 
     private void Awake()
     {
-        m_follow.SetProperties(m_car, m_camera);
+        m_follow.SetProperties(_car, m_camera);
 
-        m_shaker.SetProperties(m_car, m_camera);
+        m_shaker.SetProperties(_car, m_camera);
 
-        m_fovCorrector.SetProperties(m_car, m_camera);
+        m_fovCorrector.SetProperties(_car, m_camera);
     }
 
     private void Start()
     {
-        m_raceStateTracker.PreparationStarted += OnPreparationStarted;
+        _raceStateTracker.PreparationStarted += OnPreparationStarted;
 
-        m_raceStateTracker.Completed += OnCompleted;
+        _raceStateTracker.Completed += OnCompleted;
 
         m_follow.enabled = false;
 
@@ -59,15 +59,15 @@ public class CameraController : MonoBehaviour, IDependency<Car>, IDependency<Rac
 
         m_pathFollower.StartMoveToNearestPoint();
 
-        m_pathFollower.SetLookTarget(m_car.transform);
+        m_pathFollower.SetLookTarget(_car.transform);
 
         m_follow.enabled = false;
     }
 
     private void OnDestroy()
     {
-        m_raceStateTracker.PreparationStarted -= OnPreparationStarted;
+        _raceStateTracker.PreparationStarted -= OnPreparationStarted;
 
-        m_raceStateTracker.Completed -= OnCompleted;
+        _raceStateTracker.Completed -= OnCompleted;
     }
 }

@@ -2,18 +2,18 @@ using UnityEngine;
 
 public class RaceKeyboardStarter : MonoBehaviour, IDependency<RaceStateTracker>
 {
-    private RaceStateTracker m_raceStateTracker;
+    private RaceStateTracker _raceStateTracker;
 
     public void Construct(RaceStateTracker obj)
     {
-        m_raceStateTracker = obj;
+        _raceStateTracker = obj;
     }
 
     private void Update()
     {
         if (Input.GetKey(KeyCode.Space))
         {
-            m_raceStateTracker.LaunchPreparationStart();
+            _raceStateTracker.LaunchPreparationStart();
         }
     }
 }

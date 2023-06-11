@@ -4,29 +4,29 @@ using UnityEngine.UI;
 
 public class UICountDownTimer : MonoBehaviour, IDependency<RaceStateTracker>
 {
-    private RaceStateTracker m_raceStateTracker;
+    private RaceStateTracker _raceStateTracker;
 
     [SerializeField] private Text m_text;
 
     public void Construct(RaceStateTracker obj)
     {
-        m_raceStateTracker = obj;
+        _raceStateTracker = obj;
     }
 
     private void Start()
     {
-        m_raceStateTracker.PreparationStarted += OnPreparationStarted;
+        _raceStateTracker.PreparationStarted += OnPreparationStarted;
 
-        m_raceStateTracker.Started += OnRaceStarted;
+        _raceStateTracker.Started += OnRaceStarted;
 
         m_text.enabled = false;
     }
 
     private void OnDestroy()
     {
-        m_raceStateTracker.PreparationStarted -= OnPreparationStarted;
+        _raceStateTracker.PreparationStarted -= OnPreparationStarted;
 
-        m_raceStateTracker.Started -= OnRaceStarted;
+        _raceStateTracker.Started -= OnRaceStarted;
     }
 
     private void OnRaceStarted()
@@ -46,7 +46,7 @@ public class UICountDownTimer : MonoBehaviour, IDependency<RaceStateTracker>
 
     private void Update()
     {
-        m_text.text = m_raceStateTracker.CountDownTimer.Value.ToString("F0");
+        m_text.text = _raceStateTracker.CountDownTimer.Value.ToString("F0");
 
         if (m_text.text == "0")
         {

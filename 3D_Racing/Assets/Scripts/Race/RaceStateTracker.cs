@@ -19,7 +19,7 @@ public class RaceStateTracker : MonoBehaviour, IDependency<TrackPointCircuit>
 
     public event UnityAction Completed;
 
-    public event UnityAction<TrackPoint> TrackointPassed;
+    public event UnityAction<TrackPoint> TrackPointPassed;
 
     public event UnityAction<int> LapCompleted;
 
@@ -68,7 +68,7 @@ public class RaceStateTracker : MonoBehaviour, IDependency<TrackPointCircuit>
 
     private void OnTrackPointTriggered(TrackPoint trackPoint)
     {
-        TrackointPassed?.Invoke(trackPoint);
+        TrackPointPassed?.Invoke(trackPoint);
     }
 
     private void OnCountDownTimerFinished()

@@ -16,20 +16,20 @@ public class EngineIndicator : MonoBehaviour, IDependency<Car>
 
     [SerializeField] private EngineIndicatorColor[] m_colors;
 
-    private Car m_car;
+    private Car _car;
 
     public void Construct(Car obj)
     {
-        m_car = obj;
+        _car = obj;
     }
 
     void Update()
     {
-        m_image.fillAmount = m_car.EngineRPM / m_car.EngineMaxRPM;
+        m_image.fillAmount = _car.EngineRPM / _car.EngineMaxRPM;
 
         for (int i = 0; i < m_colors.Length; i++)
         {
-            if (m_car.EngineRPM <= m_colors[i].MaxRPM)
+            if (_car.EngineRPM <= m_colors[i].MaxRPM)
             {
                 m_image.color = m_colors[i].color;
 

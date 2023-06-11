@@ -6,7 +6,7 @@ public class ActivateTrackPoint : TrackPoint
 
     private void Start()
     {
-        m_hint.SetActive(false);
+        m_hint.SetActive(IsTarget);
     }
 
     protected override void OnPassed()

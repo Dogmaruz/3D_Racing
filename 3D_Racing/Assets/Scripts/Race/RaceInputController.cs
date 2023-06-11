@@ -3,45 +3,45 @@ using UnityEngine;
 
 public class RaceInputController : MonoBehaviour, IDependency<CarInputControl>, IDependency<RaceStateTracker>
 {
-    private CarInputControl m_carInputControl;
+    private CarInputControl _carInputControl;
 
-    private RaceStateTracker m_raceStateTracker;
+    private RaceStateTracker _raceStateTracker;
 
     public void Construct(CarInputControl obj)
     {
-        m_carInputControl = obj;
+        _carInputControl = obj;
     }
 
     public void Construct(RaceStateTracker obj)
     {
-        m_raceStateTracker = obj;
+        _raceStateTracker = obj;
     }
 
     private void Start()
     {
-        m_raceStateTracker.Started += OnRaceStarted;
+        _raceStateTracker.Started += OnRaceStarted;
 
-        m_raceStateTracker.Completed += OnRaceFinished;
+        _raceStateTracker.Completed += OnRaceFinished;
 
-        m_carInputControl.enabled = false;
+        _carInputControl.enabled = false;
     }
 
     private void OnRaceStarted()
     {
-        m_carInputControl.enabled = true;
+        _carInputControl.enabled = true;
     }
 
     private void OnRaceFinished()
     {
-        m_carInputControl.Stop();
+        _carInputControl.Stop();
 
-        m_carInputControl.enabled = false;
+        _carInputControl.enabled = false;
     }
 
     private void OnDestroy()
     {
-        m_raceStateTracker.Started -= OnRaceStarted;
+        _raceStateTracker.Started -= OnRaceStarted;
 
-        m_raceStateTracker.Completed -= OnRaceFinished;
+        _raceStateTracker.Completed -= OnRaceFinished;
     }
 }

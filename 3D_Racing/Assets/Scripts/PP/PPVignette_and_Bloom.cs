@@ -1,9 +1,9 @@
 using UnityEngine;
 using UnityEngine.Rendering.PostProcessing;
 
-public class PPVignette_and_Bloom : MonoBehaviour
+public class PPVignette_and_Bloom : MonoBehaviour, IDependency<Car>
 {
-    [SerializeField] private Car m_car;
+    private Car _car;
 
     [SerializeField] [Range(0.0f, 1.0f)] private float m_baseVolume;
 
@@ -19,6 +19,11 @@ public class PPVignette_and_Bloom : MonoBehaviour
 
     private Bloom _bloom;
 
+    public void Construct(Car obj)
+    {
+        _car = obj;
+    }
+
     private void Start()
     {
         _postProcessingVolume = GetComponent<PostProcessVolume>();
@@ -30,8 +35,8 @@ public class PPVignette_and_Bloom : MonoBehaviour
 
     private void Update()
     {
-        _vignette.intensity.value = m_baseVolume + m_volumeModifier * m_car.NormalizedLinearVelocity;
+        _vignette.intensity.value = m_baseVolume + m_volumeModifier * _car.NormalizedLinearVelocity;
 
-        _bloom.intensity.value = m_baseVolumeBloom + m_volumeModifierBloom * m_car.NormalizedLinearVelocity;
+        _bloom.intensity.value = m_baseVolumeBloom + m_volumeModifierBloom * _car.NormalizedLinearVelocity;
     }
 }

@@ -5,15 +5,15 @@ public class SpeedIndicator : MonoBehaviour, IDependency<Car>
 {
     [SerializeField] private Text m_text;
 
-    private Car m_car;
+    private Car _car;
 
     public void Construct(Car obj)
     {
-        m_car = obj;
+        _car = obj;
     }
 
     void Update()
     {
-        m_text.text = m_car.LinearVelocity.ToString("F0");
+        m_text.text = _car.LinearVelocity.ToString("F0");
     }
 }

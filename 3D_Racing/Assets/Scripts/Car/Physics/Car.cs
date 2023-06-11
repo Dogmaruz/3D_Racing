@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 
 [RequireComponent(typeof(CarChassis))]
@@ -165,5 +166,31 @@ public class Car : MonoBehaviour
         m_engineRPM = Mathf.Clamp(m_engineRPM, m_engineMinRPM, m_engineMaxRPM);
 
         m_engineTorque = m_engineTorqueCurve.Evaluate(m_engineRPM / m_engineMaxRPM) * m_engineMaxTorque * m_finalDriveRatio * Mathf.Sign(m_selectedGear);
+    }
+
+    public void Respawn(Vector3 position, Quaternion rotation)
+    {
+        Reset();
+
+        transform.position = position;
+
+        transform.rotation = rotation;
+    }
+
+    private void Reset()
+    {
+        m_carChassis.Reset();
+
+        m_carChassis.MotorTorque = 0;
+
+        m_carChassis.BrakeTorque = 0;
+
+        m_carChassis.SteerAngle = 0;
+
+        ThrottleControl = 0;
+
+        BrakeControl = 0;
+
+        SteerControl = 0;
     }
 }

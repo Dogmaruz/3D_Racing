@@ -12,13 +12,13 @@ public class WindSound : MonoBehaviour, IDependency<Car>
 
     [SerializeField] private float m_rpmModifier;
 
-    private Car m_car;
+    private Car _car;
 
     private AudioSource m_audioSource;
 
     public void Construct(Car obj)
     {
-        m_car = obj;
+        _car = obj;
     }
 
     private void Start()
@@ -27,8 +27,8 @@ public class WindSound : MonoBehaviour, IDependency<Car>
     }
     private void Update()
     {
-        m_audioSource.pitch = m_basePitch + m_pitchModifier * (m_car.NormalizedLinearVelocity * m_rpmModifier);
+        m_audioSource.pitch = m_basePitch + m_pitchModifier * (_car.NormalizedLinearVelocity * m_rpmModifier);
 
-        m_audioSource.volume = m_baseVolume + m_volumeModifier * m_car.NormalizedLinearVelocity;
+        m_audioSource.volume = m_baseVolume + m_volumeModifier * _car.NormalizedLinearVelocity;
     }
 }

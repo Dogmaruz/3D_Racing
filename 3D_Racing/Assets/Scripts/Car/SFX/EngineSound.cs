@@ -16,18 +16,18 @@ public class EngineSound : MonoBehaviour, IDependency<Car>
 
     [SerializeField] private AudioClip[] m_clips = new AudioClip[7];
 
-    private Car m_car;
+    private Car _car;
 
     private AudioSource m_engineAudioSourse;
 
     public void Construct(Car obj)
     {
-        m_car = obj;
+        _car = obj;
     }
 
     private void Start()
     {
-        m_car.OnGearChaged += AudioClipGearChanged;
+        _car.OnGearChaged += AudioClipGearChanged;
 
         m_engineAudioSourse = GetComponent<AudioSource> ();
 
@@ -41,9 +41,9 @@ public class EngineSound : MonoBehaviour, IDependency<Car>
 
     private void Update()
     {
-        m_engineAudioSourse.pitch = m_basePitch + m_pitchModifier * ((m_car.EngineRPM / m_car.EngineMaxRPM) * m_rpmModifier);
+        m_engineAudioSourse.pitch = m_basePitch + m_pitchModifier * ((_car.EngineRPM / _car.EngineMaxRPM) * m_rpmModifier);
 
-        m_engineAudioSourse.volume = m_baseVolume + m_volumeModifier * (m_car.EngineRPM / m_car.EngineMaxRPM);
+        m_engineAudioSourse.volume = m_baseVolume + m_volumeModifier * (_car.EngineRPM / _car.EngineMaxRPM);
     }
 
     private void AudioClipGearChanged(string gearName)
@@ -76,6 +76,6 @@ public class EngineSound : MonoBehaviour, IDependency<Car>
     }
     private void OnDestroy()
     {
-        m_car.OnGearChaged -= AudioClipGearChanged;
+        _car.OnGearChaged -= AudioClipGearChanged;
     }
 }
