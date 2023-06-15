@@ -12,14 +12,7 @@ public class SpotLightController : MonoBehaviour
         {
             for (int i = 0; i < m_frontLights.Length; i++)
             {
-                if (m_frontLights[i].GetComponent<Light>().enabled == false)
-                {
-                    m_frontLights[i].GetComponent<Light>().enabled = true;
-                }
-                else
-                {
-                    m_frontLights[i].GetComponent<Light>().enabled = false;
-                }
+                m_frontLights[i].GetComponent<Light>().enabled = !m_frontLights[i].GetComponent<Light>().enabled;
             }
         }
 
