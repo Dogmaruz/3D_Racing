@@ -47,5 +47,17 @@ public class ResolutionSetting : Setting
     public override void Apply()
     {
         Screen.SetResolution(m_avalibaleResolutions[_currentResolutionIndex].x, m_avalibaleResolutions[_currentResolutionIndex].y, true);
+
+        Save();
+    }
+
+    public override void Load()
+    {
+        _currentResolutionIndex = PlayerPrefs.GetInt(Title, 0);
+    }
+
+    private void Save()
+    {
+        PlayerPrefs.SetInt(Title, _currentResolutionIndex);
     }
 }

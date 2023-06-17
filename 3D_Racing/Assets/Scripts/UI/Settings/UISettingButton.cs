@@ -1,7 +1,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-public class UISettingButton : UISelectableButton
+public class UISettingButton : UISelectableButton, IScriptableObjectProperty
 {
     [SerializeField] private Setting m_setting;
 
@@ -47,11 +47,13 @@ public class UISettingButton : UISelectableButton
         m_nextImage.enabled = !m_setting.IsMaxValue;
     }
 
-    public void ApplyProperty(Setting setting)
+    public void ApplyProperty(ScriptableObject property)
     {
-        if (setting == null) return;
+        if (property == null) return;
 
-        m_setting = setting;
+        if (property is Setting == false) return;
+
+        m_setting = property as Setting;
 
         UpdateInfo();
 

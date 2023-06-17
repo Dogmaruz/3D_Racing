@@ -37,5 +37,17 @@ public class GraphicsQualitySetting : Setting
     public override void Apply()
     {
         QualitySettings.SetQualityLevel(_currentLevelIndex);
+
+        Save();
+    }
+
+    public override void Load()
+    {
+        _currentLevelIndex = PlayerPrefs.GetInt(Title, 0);
+    }
+
+    private void Save()
+    {
+        PlayerPrefs.SetInt(Title, _currentLevelIndex);
     }
 }

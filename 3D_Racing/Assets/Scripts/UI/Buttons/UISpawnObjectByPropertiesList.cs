@@ -1,20 +1,20 @@
 using UnityEngine;
 
-public class UIRaceButtonSpawner : MonoBehaviour
+public class UISpawnObjectByPropertiesList : MonoBehaviour
 {
     [SerializeField] private Transform m_parent;
 
-    [SerializeField] private UIRaceButton m_prefab;
+    [SerializeField] private GameObject m_prefab;
 
-    [SerializeField] private RaceInfo[] m_properties;
+    [SerializeField] private ScriptableObject[] m_properties;
 
     //private void Awake()
     //{
     //    Spawn();
     //}
 
-    [ContextMenu(nameof(Spawn))]
-    public void Spawn()
+    [ContextMenu(nameof(SpawnInEditMode))]
+    public void SpawnInEditMode()
     {
         //if (Application.isPlaying) return;
 
@@ -32,9 +32,12 @@ public class UIRaceButtonSpawner : MonoBehaviour
 
         for (int i = 0; i < m_properties.Length; i++)
         {
-            UIRaceButton button = Instantiate(m_prefab, m_parent);
+            GameObject button = Instantiate(m_prefab, m_parent);
 
-            button.ApplyProperty(m_properties[i]);
+            IScriptableObjectProperty scriptableObjectProperty = button.GetComponent<IScriptableObjectProperty>();
+
+            scriptableObjectProperty.ApplyProperty(m_properties[i]);
         }
     }
 }
+ 

@@ -24,4 +24,5 @@ public abstract class Setting : ScriptableObject
     }
 
     public virtual void Apply() { }
+    public virtual void Load() { }
 }
