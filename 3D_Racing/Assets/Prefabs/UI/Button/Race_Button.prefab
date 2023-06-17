@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8280741380424162734}
   - component: {fileID: 1410538579004540356}
   m_Layer: 5
-  m_Name: Image (17)
+  m_Name: Icon
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -260,6 +260,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6703349834754387438}
   - component: {fileID: 8588219018768996642}
+  - component: {fileID: 675785635725263445}
   m_Layer: 5
   m_Name: Race_Button
   m_TagString: Untagged
@@ -310,6 +311,32 @@ MonoBehaviour:
   m_FlexibleWidth: -1
   m_FlexibleHeight: -1
   m_LayoutPriority: 1
+--- !u!114 &675785635725263445
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4353557833682637509}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d4a7283494e2aa04ab91dd7d6afe0b0c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Interactable: 1
+  OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+  m_selectImage: {fileID: 6140364083311760523}
+  OnSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  OnUnSelect:
+    m_PersistentCalls:
+      m_Calls: []
+  m_raceInfo: {fileID: 0}
+  m_icon: {fileID: 1410538579004540356}
+  m_title: {fileID: 7535964917566893847}
 --- !u!1 &7897956685386053350
 GameObject:
   m_ObjectHideFlags: 0
