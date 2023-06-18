@@ -10,7 +10,7 @@ public class UISpawnObjectByPropertiesList : MonoBehaviour
 
     //private void Awake()
     //{
-    //    Spawn();
+    //    SpawnInEditMode();
     //}
 
     [ContextMenu(nameof(SpawnInEditMode))]
