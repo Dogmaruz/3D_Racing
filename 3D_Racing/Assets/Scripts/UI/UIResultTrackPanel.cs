@@ -31,13 +31,15 @@ public class UIResultTrackPanel : MonoBehaviour, IDependency<RaceResultTime>
     {
         m_resultTrackPanel.SetActive(true);
 
+        _sequence.Kill();
+
         _sequence = DOTween.Sequence()
             .Append(m_resultTrackPanel.transform.DOScale(new Vector3(0.4f, 0.4f, 0.4f), 0.4f))
             .Append(m_resultTrackPanel.transform.DOScale(new Vector3(1f, 1f, 1f), 0.2f))
             .SetEase(Ease.InOutQuad)
             .SetLink(gameObject);
 
-        m_bestTime.text = StringTime.SecondToTimeString(_raceResultTime.PlayerRecordTime);
+        m_bestTime.text = StringTime.SecondToTimeString(_raceResultTime.GetAbsoluteRecord());
 
         m_currentTime.text = StringTime.SecondToTimeString(_raceResultTime.CurrentTime);
     }

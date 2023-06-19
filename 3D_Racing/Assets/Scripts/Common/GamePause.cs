@@ -1,5 +1,7 @@
+using System;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class GamePause : MonoBehaviour
 {
@@ -7,6 +9,21 @@ public class GamePause : MonoBehaviour
 
     private bool _isPause;
     public bool IsPause => _isPause;
+
+    private void Awake()
+    {
+        SceneManager.sceneLoaded += SceneManager_SceneLoader;
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.sceneLoaded -= SceneManager_SceneLoader;
+    }
+
+    private void SceneManager_SceneLoader(Scene arg0, LoadSceneMode arg1)
+    {
+        UnPause();
+    }
 
     public void ChangePauseState()
     {

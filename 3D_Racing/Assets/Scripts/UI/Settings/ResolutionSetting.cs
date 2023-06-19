@@ -53,7 +53,7 @@ public class ResolutionSetting : Setting
 
     public override void Load()
     {
-        _currentResolutionIndex = PlayerPrefs.GetInt(Title, 0);
+        _currentResolutionIndex = PlayerPrefs.GetInt(Title, m_avalibaleResolutions.Length - 1);
     }
 
     private void Save()
