@@ -1,7 +1,8 @@
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
-using UnityEngine.UI;
+using static RaceLockController;
 
 public class RaceResultTime : MonoBehaviour, IDependency<RaceStateTracker>, IDependency<RaceTimeTracker>
 {
@@ -24,6 +25,7 @@ public class RaceResultTime : MonoBehaviour, IDependency<RaceStateTracker>, IDep
 
     private RaceTimeTracker _raceTimeTracker;
 
+    private List<RaceLockController.RaceState> _raceState;
 
     public void Construct(RaceStateTracker obj)
     {
@@ -37,6 +39,8 @@ public class RaceResultTime : MonoBehaviour, IDependency<RaceStateTracker>, IDep
 
     private void Awake()
     {
+        _raceState = new List<RaceLockController.RaceState>();
+
         Load();
     }
 
@@ -49,14 +53,14 @@ public class RaceResultTime : MonoBehaviour, IDependency<RaceStateTracker>, IDep
     {
         float absoluteRecord = GetAbsoluteRecord();
 
-       if (_raceTimeTracker.CurrentTime < absoluteRecord || _playerRecordTime == 0) 
-        { 
+        if (_raceTimeTracker.CurrentTime < absoluteRecord || _playerRecordTime == 0)
+        {
             _playerRecordTime = _raceTimeTracker.CurrentTime;
 
             Save();
         }
 
-       _currentTime = _raceTimeTracker.CurrentTime;
+        _currentTime = _raceTimeTracker.CurrentTime;
 
         ResultUpdated?.Invoke();
     }
@@ -76,11 +80,29 @@ public class RaceResultTime : MonoBehaviour, IDependency<RaceStateTracker>, IDep
     private void Load()
     {
         _playerRecordTime = PlayerPrefs.GetFloat(SceneManager.GetActiveScene().name + SaveMark, 0);
+
+        if (FileHandler.HasFile(filename))
+        {
+            Saver<List<RaceLockController.RaceState>>.TryLoad(RaceLockController.filename, ref _raceState);
+        }
     }
 
     private void Save()
     {
         PlayerPrefs.SetFloat(SceneManager.GetActiveScene().name + SaveMark, _playerRecordTime);
+
+        if (_playerRecordTime < m_goldTime)
+        {
+            for (int i = 0; i < _raceState.Count; i++)
+            {
+               if (_raceState[i].Name.Equals(SceneManager.GetActiveScene().name))
+                {
+                    _raceState[i].IsCompleted = true;
+                }
+            }
+
+            Saver<List<RaceLockController.RaceState>>.Save(filename, _raceState);
+        }
     }
 
     private void OnDestroy()

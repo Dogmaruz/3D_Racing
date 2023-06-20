@@ -11,7 +11,16 @@ public class UIRaceButton : UISelectableButton, IScriptableObjectProperty
 
     [SerializeField] private Text m_title;
 
-    private void Start()
+    [SerializeField] private GameObject m_lockImage;
+
+    private bool _isCompleted;
+
+    private string _sceneName;
+    public string SceneName => _sceneName;
+
+    public RaceInfo RaceInfo => m_raceInfo;
+
+    private void Awake()
     {
         ApplyProperty(m_raceInfo);
     }
@@ -21,6 +30,8 @@ public class UIRaceButton : UISelectableButton, IScriptableObjectProperty
         base.OnPointerClick(eventData);
 
         if (m_raceInfo == null) return;
+
+        if (m_lockImage.activeSelf == true) return;
 
         SceneManager.LoadScene(m_raceInfo.SceneName);
     }
@@ -36,5 +47,22 @@ public class UIRaceButton : UISelectableButton, IScriptableObjectProperty
         m_icon.sprite = m_raceInfo.Icon;
 
         m_title.text = m_raceInfo.Title;
+
+        _sceneName = m_raceInfo.SceneName;
+    }
+
+    public bool GetRaceState()
+    {
+        return _isCompleted;
+    }
+
+    public void SetRaceState(bool isCompleted)
+    {
+        _isCompleted = isCompleted;
+    }
+
+    public void SetLockImageVisable(bool isLook)
+    {
+        m_lockImage.SetActive(isLook);
     }
 }

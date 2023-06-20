@@ -3,7 +3,7 @@ using UnityEngine.SceneManagement;
 
 public class SceneLoader : MonoBehaviour
 {
-    private const string MAIN_MENU_SCENE_TITLE = "Main_menu";
+    public const string MAIN_MENU_SCENE_TITLE = "Main_menu";
 
     public void LoadMainMenu()
     {
