@@ -802,7 +802,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1939460907599042611}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.085, y: 0.057, z: 2.414}
+  m_LocalPosition: {x: 0.085, y: 0.057, z: -0.36}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1132,7 +1132,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2703115307129415122}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1.051, y: 0, z: 0.753}
+  m_LocalPosition: {x: -1.051, y: 0, z: 3.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -1147,18 +1147,18 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2703115307129415122}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 693.6
-  m_Range: 50
-  m_SpotAngle: 34.42012
-  m_InnerSpotAngle: 17.746798
+  m_Intensity: 600
+  m_Range: 200
+  m_SpotAngle: 120.909386
+  m_InnerSpotAngle: 52.401863
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -1880,7 +1880,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3389445562029043750}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.11200005, y: 0.056999743, z: 2.4139998}
+  m_LocalPosition: {x: -0.11200005, y: 0.056999743, z: -0.3600006}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2001,7 +2001,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 5437002790589167295}
-  - {fileID: 785970044399868697}
+  - {fileID: 4112085787131244805}
   m_Father: {fileID: 2625661652389959140}
   m_RootOrder: -1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -3142,7 +3142,7 @@ MonoBehaviour:
     m_baseForwardStiffnes: 1.5
     m_stabilityForvardFactor: 1.5
     m_baseSidewaysStiffnes: 1.75
-    m_stabilitySidewaysFactor: 5
+    m_stabilitySidewaysFactor: 3
   - m_leftWheelCollider: {fileID: 208231330135142612}
     m_rightWheelCollider: {fileID: 472188571449379550}
     m_leftWheelMesh: {fileID: 7436500641852200638}
@@ -9371,7 +9371,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8387954299076016718}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.051, y: 0, z: 0.753}
+  m_LocalPosition: {x: 1.051, y: 0, z: 3.62}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -9386,18 +9386,18 @@ Light:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8387954299076016718}
-  m_Enabled: 0
+  m_Enabled: 1
   serializedVersion: 10
   m_Type: 0
   m_Shape: 0
   m_Color: {r: 1, g: 1, b: 1, a: 1}
-  m_Intensity: 693.6
-  m_Range: 50
-  m_SpotAngle: 34.42012
-  m_InnerSpotAngle: 17.746798
+  m_Intensity: 600
+  m_Range: 200
+  m_SpotAngle: 120.909386
+  m_InnerSpotAngle: 52.401863
   m_CookieSize: 10
   m_Shadows:
-    m_Type: 0
+    m_Type: 2
     m_Resolution: -1
     m_CustomResolution: -1
     m_Strength: 1
@@ -9963,7 +9963,7 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0e9592bd4619c7a4f95054bf186efc5b, type: 3}
---- !u!4 &785970044399868697 stripped
+--- !u!4 &4112085787131244805 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3745098970199665181, guid: 0e9592bd4619c7a4f95054bf186efc5b, type: 3}
   m_PrefabInstance: {fileID: 785970044399868696}
