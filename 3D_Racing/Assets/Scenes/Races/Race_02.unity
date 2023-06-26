@@ -20540,7 +20540,7 @@ GameObject:
   - component: {fileID: 1516319826}
   - component: {fileID: 1516319825}
   - component: {fileID: 1516319824}
-  m_Layer: 6
+  m_Layer: 0
   m_Name: Global Post-Processing Volume
   m_TagString: Untagged
   m_Icon: {fileID: 0}
