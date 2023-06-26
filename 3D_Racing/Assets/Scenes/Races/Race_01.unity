@@ -14831,7 +14831,7 @@ MonoBehaviour:
   m_RendererIndex: -1
   m_VolumeLayerMask:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 4294967295
   m_VolumeTrigger: {fileID: 0}
   m_VolumeFrameworkUpdateModeOption: 2
   m_RenderPostProcessing: 1
@@ -35158,7 +35158,7 @@ PrefabInstance:
       objectReference: {fileID: 1063148940}
     - target: {fileID: 3020266961675124720, guid: 33feaeb8ff1de8946b8a612b0fb87e83, type: 3}
       propertyPath: m_goldTime
-      value: 60
+      value: 65
       objectReference: {fileID: 0}
     - target: {fileID: 3147238762536491687, guid: 33feaeb8ff1de8946b8a612b0fb87e83, type: 3}
       propertyPath: m_RootOrder
